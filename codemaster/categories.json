@@ -1,0 +1,37 @@
+[
+    {
+        "name": "ReactJS",
+        "routerPath": "react-js",
+        "position": 1
+    },
+    {
+        "name": "VueJS",
+        "routerPath": "vue-js",
+        "position": 2
+    },
+    {
+        "name": "Angular",
+        "routerPath": "angular",
+        "position": 3
+    },
+    {
+        "name": "Savelt",
+        "routerPath": "savelt",
+        "position": 4
+    },
+    {
+        "name": "Javascript",
+        "routerPath": "javascript",
+        "position": 5
+    },
+    {
+        "name": "Typescript",
+        "routerPath": "typescript",
+        "position": 6
+    },
+    {
+        "name": "NodeJS",
+        "routerPath": "node-js",
+        "position": 7
+    }
+]

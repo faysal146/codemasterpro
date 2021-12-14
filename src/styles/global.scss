@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-900 text-gray-200;
+    @apply scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-gray-900;
+    overflow-x: hidden;
+}
+
+#___gatsby {
+    overflow-x: hidden;
+}
+
+.main-page-title {
+    @apply pb-8
+					mb-6
+					text-2xl
+					font-extrabold
+					leading-tight
+					text-gray-300
+					border-b border-gray-400
+					md:text-4xl;
+}
+
+.site-fade {
+    @apply transition-all duration-200 ease-in-out;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 45px !important;
+    height: 200px !important;
+    transform: translateY(-50%) !important;
+    &::after {
+        color: white;
+    }
+    @apply rounded shadow-md text-white bg-green-500;
+}
+.react-share__ShareButton {
+    @apply mr-2;
+}
+.ais-Hits-list {
+    @apply h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-gray-900;
+}

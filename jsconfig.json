@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "components": ["./components"],
+            "layouts": ["./layouts"],
+            "assets": ["/assets"],
+            "styles": ["./styles"]
+        }
+    },
+    "include": ["./src", "./assets", "./algolia-queries.js"]
+}

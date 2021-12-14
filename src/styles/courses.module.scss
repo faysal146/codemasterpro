@@ -1,0 +1,25 @@
+.courses-content {
+    h2,
+    h2 strong {
+        @apply text-xl md:text-2xl my-6 font-bold;
+    }
+    h3 {
+        @apply text-lg font-semibold my-5;
+    }
+    ul {
+        @apply my-4 pl-4 space-y-3;
+        li {
+            list-style-type: disc !important;
+            @apply list-inside;
+        }
+    }
+    p {
+        @apply my-5;
+    }
+    p strong {
+        @apply font-semibold;
+    }
+    a[title='Download Now'] {
+        @apply py-2 px-4 rounded bg-green-600 shadow;
+    }
+}
