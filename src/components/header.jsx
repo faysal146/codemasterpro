@@ -3,12 +3,13 @@ import { Link } from 'gatsby';
 import Logo from 'components/codemaster/logo';
 
 export default () => (
-    <header className="py-5 px-4 text-green-300">
+    <header className="py-5 px-4 text-emerald-400">
         <div className="container flex justify-between mx-auto">
             <Link to="/" aria-label="Back to homepage">
                 <Logo />
             </Link>
             <div className="items-center flex space-x-4">
+                {/* TODO: Add Social Link here */}
                 <a className="">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

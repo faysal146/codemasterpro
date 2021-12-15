@@ -9,9 +9,8 @@ import SwiperCore, { Navigation } from 'swiper';
 import Pagination from 'components/codemaster/pagination';
 import PostFlat from 'components/courses/post-flat';
 import PostBox from 'components/courses/post-box';
-import { WithSideBar } from 'layouts/layout';
+import WithSiderbar from 'layouts/with-sidebar';
 
-import { isMobile } from 'react-device-detect';
 
 SwiperCore.use([Navigation]);
 
@@ -20,14 +19,14 @@ const CoursesListTemplate = function ({ data, pageContext }) {
     const courses = data.courses.edges;
     const featuredCourses = data.featuredCourses.edges;
     return (
-        <WithSideBar>
+        <WithSiderbar>
             <SEO />
             <div>
                 <h2 className="main-page-title">Featured Courses</h2>
                 <Swiper spaceBetween={20} slidesPerView="auto" navigation>
                     {featuredCourses.map(({ node }) => (
-                        <SwiperSlide key={node.id} style={{ width: isMobile ? '300px' : '350px' }}>
-                            <PostBox {...node.course.frontmatter} slug={node.name} />
+                        <SwiperSlide key={node.id} className="codemaster-slider">
+                            <PostBox {...node.course.frontmatter} excerpt={node.course.excerpt} slug={node.name} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -37,10 +36,9 @@ const CoursesListTemplate = function ({ data, pageContext }) {
                 <div className="w-full">
                     <div className="flex flex-col space-y-10">
                         {courses.map(({ node }) => (
-                            <PostFlat {...node.course.frontmatter} slug={node.name} key={node.id} />
+                            <PostFlat {...node.course.frontmatter} excerpt={node.course.excerpt} slug={node.name} key={node.id} />
                         ))}
                     </div>
-                    {/* BUG: Fix pagination whene go back 1 */}
                     <Pagination
                         numPages={pageContext.numPages}
                         currentPage={pageContext.currentPage}
@@ -49,7 +47,7 @@ const CoursesListTemplate = function ({ data, pageContext }) {
                     />
                 </div>
             </div>
-        </WithSideBar>
+        </WithSiderbar>
     );
 };
 export default CoursesListTemplate;
@@ -64,22 +62,7 @@ export const query = graphql`
         ) {
             edges {
                 node {
-                    course: childMdx {
-                        frontmatter {
-                            title
-                            description
-                            tags
-                            image {
-                                childImageSharp {
-                                    gatsbyImageData(quality: 85, width: 400, placeholder: BLURRED)
-                                }
-                            }
-                            createdAt(formatString: "MMMM Do YYYY")
-                            updatedAt(formatString: "MMMM Do YYYY")
-                        }
-                    }
-                    name
-                    id
+                    ...CourseFragment
                 }
             }
         }
@@ -93,23 +76,7 @@ export const query = graphql`
         ) {
             edges {
                 node {
-                    course: childMdx {
-                        frontmatter {
-                            title
-                            description
-                            tags
-                            image {
-                                childImageSharp {
-                                    gatsbyImageData(quality: 85, width: 400, placeholder: BLURRED)
-                                }
-                            }
-                            featured
-                            createdAt(formatString: "MMMM Do YYYY")
-                            updatedAt(formatString: "MMMM Do YYYY")
-                        }
-                    }
-                    name
-                    id
+                        ...FeaturedCourseFragment
                 }
             }
         }

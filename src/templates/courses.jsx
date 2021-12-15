@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { WithSideBar } from 'layouts/layout';
+import WithSiderbar from 'layouts/with-sidebar';
 import * as coursesStyle from 'styles/courses.module.scss';
 import SEO from 'components/codemaster/seo';
 import { MDXProvider } from '@mdx-js/react';
@@ -12,7 +12,6 @@ import PostBoxSM from 'components/courses/post-box-sm';
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
-import { isMobile } from 'react-device-detect';
 
 SwiperCore.use([Navigation]);
 
@@ -45,7 +44,7 @@ const Courses = function ({ data, pageContext }) {
     }
     return (
         <MDXProvider components={shortcodes}>
-            <WithSideBar>
+            <WithSiderbar>
                 <SEO
                     title={frontmatter.title}
                     description={frontmatter.description}
@@ -62,12 +61,22 @@ const Courses = function ({ data, pageContext }) {
                             >
                                 {frontmatter.title}
                             </h1>
-                            <p className="text-base text-gray-400">
-                                {/* TODO: add calander icon */}
-                                {frontmatter.createdAt} —
-                                <span className="text-green-400">CodeMaster</span>
-                                {/* TODO: add clock icon */}
-                                <span className="ml-2">Time To Read: {timeToRead} Minute</span>
+                            <p className="text-base text-gray-400 flex-col justify-center space-y-2">
+                                <span className='flex'>
+                                    <svg className='inline-block mr-2' xmlns="http://www.w3.org/2000/svg" viewBox="-2 -3 24 24" width="24" fill="currentColor"><path d="M17 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3v2a2 2 0 1 0 4 0V2h1v2a2 2 0 1 0 4 0V2h1v2a2 2 0 1 0 4 0V2zM3 8v2h2V8H3zm0 4v2h2v-2H3zm12 0v2h2v-2h-2zm0-4v2h2V8h-2zM7 8v2h2V8H7zm4 0v2h2V8h-2zm0 4v2h2v-2h-2zm-4 0v2h2v-2H7zM5 0a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V1a1 1 0 0 1 1-1zm-5 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V1a1 1 0 0 1 1-1z" /></svg>
+                                    <span>{frontmatter.createdAt}</span>
+                                </span>
+
+
+                                <span className="flex">
+                                    <span className='inlin-block mr-2'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M11 9h4a1 1 0 0 1 0 2h-5a1 1 0 0 1-1-1V4a1 1 0 1 1 2 0v5zm-1 11C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" /></svg>
+                                    </span>
+                                    <span>
+                                        {timeToRead} Min
+                                    </span> </span>
+                                <span className="text-green-400"> - CodeMaster
+                                </span>
                             </p>
                         </div>
                         <hr className="my-4" />
@@ -88,7 +97,7 @@ const Courses = function ({ data, pageContext }) {
                     <div className="flex flex-wrap">
                         {tags.map((tg) => (
                             <Link
-                                className="py-1 px-2 bg-green-500 text-white rounded ml-2 mt-2 inline-block capitalize shadow-md"
+                                className="py-1 px-2 bg-emerald-500 text-white rounded ml-2 mt-2 inline-block capitalize shadow-md"
                                 key={tg}
                                 to={`/tags/${tg.toLowerCase().split(' ').join('-')}`}
                             >
@@ -101,11 +110,11 @@ const Courses = function ({ data, pageContext }) {
                     {
                         relatedPostsKeys.length && relatedPostsKeys.map(postkey => (
                             <div key={postkey} className='mb-3 py-6 px-3 bg-gray-800 rounded shadow-md'>
-                                <h3 className='mb-2 text-lg text-green-400'>More {postkey} Courses</h3>
+                                <h3 className='mb-2 text-lg text-emerald-400'>More {postkey} Courses</h3>
                                 <Swiper spaceBetween={5} slidesPerView="auto" navigation>
                                     {pageContext.relatedPosts[postkey].map(({ node }) => (
-                                        <SwiperSlide key={node.id} style={{ width: isMobile ? '250px' : '280px' }}>
-                                            <PostBoxSM {...node.course.frontmatter} slug={node.name} />
+                                        <SwiperSlide key={node.id} className="relatedcourse-slider">
+                                            <PostBoxSM {...node.course.frontmatter} excerpt={node.course.excerpt} slug={node.name} />
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
@@ -113,7 +122,7 @@ const Courses = function ({ data, pageContext }) {
                         ))
                     }
                 </section>
-            </WithSideBar>
+            </WithSiderbar>
         </MDXProvider>
     );
 };

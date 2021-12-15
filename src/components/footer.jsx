@@ -9,7 +9,7 @@ const footer = () => (
                 <div>
                     <Logo />
 
-                    <p className="max-w-xs mt-4 text-sm capitalize sm:text-left md:text-center lg:text-left">
+                    <p className="max-w-xs mt-4 text-sm lg:text-base capitalize sm:text-left md:text-center lg:text-left">
                         Get Your Desire Course. Become Pro Coder and build Amazing Things. Make
                         world better.
                     </p>
@@ -120,7 +120,7 @@ const footer = () => (
                 <div className="flex-grow mt-5 lg:mt-0">
                     <p className="font-medium text-center">Legal</p>
 
-                    <ul className="flex flex-col md:flex-row mt-5 lg:mt-16 md:space-x-4 space-y-4 md:space-y-0 text-sm footer-link justify-center">
+                    <ul className="flex flex-col md:flex-row mt-5 lg:mt-16 md:space-x-4 space-y-4 md:space-y-0 text-sm lg:text-base footer-link justify-center">
                         <Link to="/dmca-copyrights" className="hover:opacity-75">
                             DMCA POLICY
                         </Link>

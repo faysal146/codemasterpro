@@ -4,7 +4,6 @@ import Footer from 'components/footer';
 import Navigation from 'components/navigation';
 
 import Subscribe from 'components/codemaster/subscribe';
-import WithSiderbarDesktop from './desktop/with-sidebar';
 
 
 export default function ({ children }) {
@@ -22,7 +21,3 @@ export default function ({ children }) {
         </>
     );
 }
-
-export const WithSideBar = function ({ children }) {
-    return <WithSiderbarDesktop>{children}</WithSiderbarDesktop>
-};

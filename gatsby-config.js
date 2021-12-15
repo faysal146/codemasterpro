@@ -2,7 +2,7 @@ const path = require('path');
 const AlgoliaQueries = require('./algolia-queries');
 
 require('dotenv').config({
-    path: `.env`
+    path: `.env.production`
 });
 
 module.exports = {
@@ -93,14 +93,11 @@ module.exports = {
             __key: 'codemaster'
         },
         {
-            resolve: `gatsby-plugin-google-fonts-v2`,
+            resolve: 'gatsby-plugin-web-font-loader',
             options: {
-                fonts: [
-                    {
-                        family: `Poppins`
-                        //   weights: ['100', '400']
-                    }
-                ]
+                google: {
+                    families: ['Poppins']
+                }
             }
         },
         {
@@ -109,7 +106,8 @@ module.exports = {
                 components: path.join(__dirname, './src/components'),
                 layouts: path.join(__dirname, './src/layouts'),
                 assets: path.join(__dirname, './assets'),
-                styles: path.join(__dirname, './src/styles')
+                styles: path.join(__dirname, './src/styles'),
+                context: path.join(__dirname, './src/context')
             }
         },
         {
@@ -126,6 +124,13 @@ module.exports = {
                 appId: process.env.GATSBY_ALGOLIA_APP_ID,
                 apiKey: process.env.ALGOLIA_ADMIN_KEY,
                 queries: AlgoliaQueries
+            }
+        },
+        {
+            resolve: `gatsby-plugin-portal`,
+            options: {
+                key: 'modal',
+                id: 'modal'
             }
         }
     ]

@@ -5,7 +5,8 @@
             "components": ["./components"],
             "layouts": ["./layouts"],
             "assets": ["/assets"],
-            "styles": ["./styles"]
+            "styles": ["./styles"],
+            "context": ["./context"]
         }
     },
     "include": ["./src", "./assets", "./algolia-queries.js"]

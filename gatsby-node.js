@@ -88,6 +88,7 @@ const relatedPostQueryBuilder = `
                             createdAt(formatString: "MMMM Do YYYY")
                             updatedAt(formatString: "MMMM Do YYYY")
                         }
+                        excerpt(truncate: true, pruneLength: 120)
                     }
                     name
                     id

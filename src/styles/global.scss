@@ -35,7 +35,7 @@ body {
     &::after {
         color: white;
     }
-    @apply rounded shadow-md text-white bg-green-500;
+    @apply rounded shadow-md text-white bg-emerald-400;
 }
 .react-share__ShareButton {
     @apply mr-2;
@@ -43,3 +43,15 @@ body {
 .ais-Hits-list {
     @apply h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-gray-900;
 }
+.swiper-slide.codemaster-slider {
+    @apply w-[300px] md:w-[320px] lg:w-[350px] #{!important};
+}
+.swiper-slide.relatedcourse-slider {
+    @apply w-[270px] md:w-[300px] lg:w-[350px] #{!important};
+}
+
+// @media (min-width: 350px) {
+//     #nav-items {
+//         width: 45%;
+//     }
+// }

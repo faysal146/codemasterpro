@@ -3,13 +3,13 @@ import { Link } from 'gatsby';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 
 const pagClasss =
-    'cursor-pointer p-2 bg-gray-700 rounded text-green-300 inline-flex items-center justify-center w-11 shadow-md hover:bg-green-400 hover:text-gray-200 transition-all duration-150 ease-in-out';
+    'cursor-pointer p-2 bg-gray-700 rounded text-emerald-300 inline-flex items-center justify-center w-11 shadow-md hover:bg-emerald-400 hover:text-gray-200 transition-all duration-150 ease-in-out';
 
 const disabledPag =
-    'p-2 bg-gray-700 rounded text-green-300 inline-flex items-center justify-center w-11 shadow-md opacity-70';
+    'p-2 bg-gray-700 rounded text-emerald-300 inline-flex items-center justify-center w-11 shadow-md opacity-70';
 
 const activeClass =
-    'p-2 rounded inline-flex items-center justify-center w-11 shadow-md bg-green-400 text-gray-200';
+    'p-2 rounded inline-flex items-center justify-center w-11 shadow-md bg-emerald-400 text-gray-200';
 
 const PaginationLink = function ({ hasNextPage }) {
     if (hasNextPage) {
@@ -108,7 +108,7 @@ const Pagination = function ({ numPages, currentPage, pathPrefix, indexPagePathP
                         <DisableCurrentPage
                             currentPage={currentPage}
                             index={index}
-                            routePath={getPath(`${pathPrefix}/${index}`)}
+                            routePath={index > 1 ? getPath(`${pathPrefix}/${index}`) : getPath(indexPagePathPerfix)}
                         />
                     </li>
                 );

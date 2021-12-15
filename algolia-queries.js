@@ -50,7 +50,7 @@ const queries = [
         query: pageQuery,
         transformer: ({ data }) => data.allFile.edges.map(pageToAlgoliaRecord),
         indexName,
-        settings: { attributesToSnippet: [`description:20`] }
+        settings: { attributesToSnippet: [`description:30`] }
     }
 ];
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
-import truncate from 'lodash/truncate';
 
-export default function ({ image, title, description, slug, createdAt /* updatedAt */ }) {
+export default function ({ image, title, excerpt, slug, createdAt /* updatedAt, description */ }) {
     const thumbImage = getImage(image);
     return (
         <div className="p-2">
@@ -21,25 +20,23 @@ export default function ({ image, title, description, slug, createdAt /* updated
                         className="
 							inline-block
 							mb-3
-							text-green-400
+							text-emerald-400
 							transition-colors
 							duration-200
 							hover:text-deep-purple-accent-700
 						"
                     >
-                        <h2 className="text-lg font-bold">
-                            {/* 30 */}
-                            {truncate(title, { length: 40 })}
+                        <h2 className="text-lg xl:text-xl font-bold">
+                            {`${title.substr(0, 50)}...`}
                         </h2>
                     </Link>
-                    <p className="mb-4 text-gray-300 text-sm">
-                        {/* 120 */}
-                        {truncate(description, { length: 180 })}
+                    <p className="mb-4 text-gray-300 text-sm lg:text-base">
+                        {excerpt}
                     </p>
                     <Link
                         to={`/${slug}`}
                         aria-label="Likes"
-                        className="bg-green-400 rounded text-center py-1 text-sm text-gray-900 flex justify-center items-center"
+                        className="bg-emerald-400 rounded text-center py-1 text-sm xl:text-base text-gray-900 flex justify-center items-center"
                     >
                         <span className="inline-block font-bold">Read Now</span>
                         <span className="inline-block">

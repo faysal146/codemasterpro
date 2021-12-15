@@ -26,7 +26,7 @@ export default function IntersectionObserverWrap({ children }) {
     const classes = useIntersectionStyles();
     const navRef = useRef(null);
     const [visibilityMap, setVisibilityMap] = useState({});
-    const handleIntersection = (entries) => {
+    const handleIntersection = React.useCallback((entries) => {
         const updatedEntries = {};
         entries.forEach((entry) => {
             const { targetid } = entry.target.dataset;
@@ -41,7 +41,7 @@ export default function IntersectionObserverWrap({ children }) {
             ...prev,
             ...updatedEntries
         }));
-    };
+    }, [])
     useEffect(() => {
         const observer = new IntersectionObserver(handleIntersection, {
             root: navRef.current,
@@ -56,10 +56,12 @@ export default function IntersectionObserverWrap({ children }) {
                 observer.observe(item);
             }
         });
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect()
+        };
     }, []);
     return (
-        <div className="flex" style={{ width: "75%" }} ref={navRef}>
+        <div className="flex w-[59%] md:w-[75%] lg:w-[85%] xl:w-[90%]" id="nav-items" ref={navRef}>
             {React.Children.map(children, (child) => React.cloneElement(child, {
                 className: classnames(child.props.className, {
                     [classes.visible]: !!visibilityMap[child.props["data-targetid"]],

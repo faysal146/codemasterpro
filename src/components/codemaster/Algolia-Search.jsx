@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import algoliasearch from "algoliasearch/lite"
 import { InstantSearch, connectSearchBox } from "react-instantsearch-dom"
-import { navigate } from 'gatsby'
 import SearchResult from "components/codemaster/search-result"
 
 
@@ -10,7 +9,6 @@ const SearchBox = connectSearchBox(
         const handleSubmit = React.useCallback((e) => {
             e.preventDefault()
             refine(query)
-            navigate(`${window.location.href.replace(/#.+/, '')}#search`)
             onSubmit(true)
         }, [query])
         return (
@@ -23,7 +21,7 @@ const SearchBox = connectSearchBox(
                     onChange={handleChange}
                     value={query}
                 />
-                <button type="submit" className="block rounded ml-2 px-4 bg-green-400">
+                <button type="submit" className="block rounded ml-2 px-4 bg-emerald-400">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="-2.5 -2.5 24 24"

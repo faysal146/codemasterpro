@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import PostFlat from 'components/courses/post-flat';
 import Pagination from 'components/codemaster/pagination';
-import { WithSideBar } from 'layouts/layout';
+import WithSiderbar from 'layouts/with-sidebar';
 import SEO from 'components/codemaster/seo';
 
 const CategoryTemplate = function ({ data, pageContext }) {
@@ -11,14 +11,14 @@ const CategoryTemplate = function ({ data, pageContext }) {
     const { category } = data;
     const pathPrefix = `/categories/${category.routerPath}`;
     return (
-        <WithSideBar>
+        <WithSiderbar>
             <SEO title={`Courses By ${category.name}`} />
             <div className="mt-10" id="courses-list">
                 <h2 className="main-page-title">{category.name}</h2>
                 <div className="w-full">
                     <div className="flex flex-col space-y-10">
                         {courses.map(({ node }) => (
-                            <PostFlat {...node.course.frontmatter} slug={node.name} key={node.id} />
+                            <PostFlat {...node.course.frontmatter} excerpt={node.course.excerpt} slug={node.name} key={node.id} />
                         ))}
                     </div>
                     <Pagination
@@ -28,7 +28,7 @@ const CategoryTemplate = function ({ data, pageContext }) {
                     />
                 </div>
             </div>
-        </WithSideBar>
+        </WithSiderbar>
     );
 };
 
@@ -47,22 +47,7 @@ export const query = graphql`
         ) {
             edges {
                 node {
-                    course: childMdx {
-                        frontmatter {
-                            title
-                            description
-                            tags
-                            image {
-                                childImageSharp {
-                                    gatsbyImageData(quality: 85, width: 400, placeholder: BLURRED)
-                                }
-                            }
-                            createdAt(formatString: "MMMM Do YYYY")
-                            updatedAt(formatString: "MMMM Do YYYY")
-                        }
-                    }
-                    name
-                    id
+                    ...CourseFragment
                 }
             }
         }

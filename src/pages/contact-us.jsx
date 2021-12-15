@@ -22,7 +22,7 @@ const ContactUs = () => (
                         <label htmlFor="message" className="leading-7 text-sm text-gray-300">Message</label>
                         <textarea id="message" name="message" className="w-full  focus:border-green-500 focus:ring-2 focus:ring-green-200 h-32 text-base outline-none bg-gray-700 rounded border border-gray-800 text-gray-200 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" />
                     </div>
-                    <button className="text-white bg-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Button</button>
+                    <button className="text-white bg-emerald-400 border-0 py-2 px-6 focus:outline-none hover:bg-emerald-600 rounded text-lg">Button</button>
                 </div>
             </div>
         </section>
