@@ -1,7 +1,9 @@
 module.exports = {
-    purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
-    darkMode: false, // or 'media' or 'class'
-    // mode: 'jit',
+    content: [
+        // Example content paths...
+        './public/**/*.html',
+        './src/**/*.{js,jsx,ts,tsx,vue}'
+    ],
     theme: {
         extend: {},
         fontFamily: {
