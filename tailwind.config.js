@@ -12,6 +12,7 @@ module.exports = {
     },
     variants: {
         extend: {}
-    },
-    plugins: [require('tailwind-scrollbar')]
+    }
+    // TODO: add tailwind 3 custom scrollbar
+    // plugins: [require('tailwind-scrollbar')]
 };
