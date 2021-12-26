@@ -88,9 +88,9 @@ function getPath(path) {
 
 const Pagination = function ({ numPages, currentPage, pathPrefix, indexPagePathPerfix }) {
     let prevPage;
-    if (currentPage === 1) prevPage = false
+    if (currentPage === 1) prevPage = false;
     else if (currentPage === 2) {
-        prevPage = getPath(indexPagePathPerfix || pathPrefix)
+        prevPage = getPath(indexPagePathPerfix || pathPrefix);
     } else {
         prevPage = getPath(`${pathPrefix}/${currentPage - 1}`);
     }
@@ -108,7 +108,11 @@ const Pagination = function ({ numPages, currentPage, pathPrefix, indexPagePathP
                         <DisableCurrentPage
                             currentPage={currentPage}
                             index={index}
-                            routePath={index > 1 ? getPath(`${pathPrefix}/${index}`) : getPath(indexPagePathPerfix)}
+                            routePath={
+                                index > 1
+                                    ? getPath(`${pathPrefix}/${index}`)
+                                    : getPath(indexPagePathPerfix)
+                            }
                         />
                     </li>
                 );

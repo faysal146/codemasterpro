@@ -1,10 +1,12 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import SEO from 'components/codemaster/seo';
+import { graphql } from 'gatsby'
 
+import SEO from 'components/codemaster/seo';
 import PostFlat from 'components/courses/post-flat';
 import Pagination from 'components/codemaster/pagination';
+
 import WithSiderbar from 'layouts/with-sidebar';
+
 
 const CategoryTemplate = function ({ data, pageContext }) {
     const courses = data.courses.edges;
@@ -17,7 +19,12 @@ const CategoryTemplate = function ({ data, pageContext }) {
                 <div className="w-full">
                     <div className="flex flex-col space-y-10">
                         {courses.map(({ node }) => (
-                            <PostFlat {...node.course.frontmatter} excerpt={node.course.excerpt} slug={node.name} key={node.id} />
+                            <PostFlat
+                                {...node.course.frontmatter}
+                                excerpt={node.course.excerpt}
+                                slug={node.name}
+                                key={node.id}
+                            />
                         ))}
                     </div>
                     <Pagination
@@ -50,5 +57,6 @@ export const query = graphql`
         }
     }
 `;
+
 
 export default CategoryTemplate;

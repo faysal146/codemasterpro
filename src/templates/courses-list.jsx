@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+
 import SEO from 'components/codemaster/seo';
 
 // eslint-disable-next-line import/no-unresolved
@@ -9,13 +10,17 @@ import SwiperCore, { Navigation } from 'swiper';
 import Pagination from 'components/codemaster/pagination';
 import PostFlat from 'components/courses/post-flat';
 import PostBox from 'components/courses/post-box';
+
 import WithSiderbar from 'layouts/with-sidebar';
 
-
-SwiperCore.use([Navigation]);
-
+let sliderActive = false
 // eslint-disable-next-line func-names
 const CoursesListTemplate = function ({ data, pageContext }) {
+    if (!sliderActive) {
+        SwiperCore.use([Navigation]);
+        sliderActive = true
+    }
+    SwiperCore.use([Navigation]);
     const courses = data.courses.edges;
     const featuredCourses = data.featuredCourses.edges;
     return (
@@ -26,7 +31,11 @@ const CoursesListTemplate = function ({ data, pageContext }) {
                 <Swiper spaceBetween={20} slidesPerView="auto" navigation>
                     {featuredCourses.map(({ node }) => (
                         <SwiperSlide key={node.id} className="codemaster-slider">
-                            <PostBox {...node.course.frontmatter} excerpt={node.course.excerpt} slug={node.name} />
+                            <PostBox
+                                {...node.course.frontmatter}
+                                excerpt={node.course.excerpt}
+                                slug={node.name}
+                            />
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -36,7 +45,12 @@ const CoursesListTemplate = function ({ data, pageContext }) {
                 <div className="w-full">
                     <div className="flex flex-col space-y-10">
                         {courses.map(({ node }) => (
-                            <PostFlat {...node.course.frontmatter} excerpt={node.course.excerpt} slug={node.name} key={node.id} />
+                            <PostFlat
+                                {...node.course.frontmatter}
+                                excerpt={node.course.excerpt}
+                                slug={node.name}
+                                key={node.id}
+                            />
                         ))}
                     </div>
                     <Pagination
@@ -51,6 +65,7 @@ const CoursesListTemplate = function ({ data, pageContext }) {
     );
 };
 export default CoursesListTemplate;
+
 
 export const query = graphql`
     query CoursesQuery($skip: Int! = 0, $limit: Int! = 2) {
@@ -82,3 +97,4 @@ export const query = graphql`
         }
     }
 `;
+

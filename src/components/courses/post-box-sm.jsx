@@ -3,7 +3,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 
 export default function (props) {
-    const { image, title, excerpt, slug, createdAt /* updatedAt, description */ } = props
+    const { image, title, excerpt, slug, createdAt /* updatedAt, description */ } = props;
     const thumbImage = getImage(image);
     return (
         <div className="p-2">
@@ -31,9 +31,7 @@ export default function (props) {
                             {`${title.substr(0, 30)}...`}
                         </h2>
                     </Link>
-                    <p className="mb-4 text-gray-300 text-sm lg:text-base break-words">
-                        {excerpt}
-                    </p>
+                    <p className="mb-4 text-gray-300 text-sm lg:text-base break-words">{excerpt}</p>
                     <Link
                         to={`/${slug}`}
                         aria-label="Likes"

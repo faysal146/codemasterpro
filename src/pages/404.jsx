@@ -46,17 +46,17 @@ const NotFoundPage = function () {
                         </p>
                         <Link
                             to="/"
-                            class="w-full mb-2 sm:w-auto sm:mb-0 bg-green-500 text-white py-2 px-4 rounded"
+                            className="w-full mb-2 sm:w-auto sm:mb-0 bg-emerald-500 text-white py-2 px-4 rounded"
                         >
                             Back to homepage
                         </Link>
                         <Link
                             to="/contact"
-                            class="
+                            className="
 						w-full
 						mb-2
 						sm:w-auto sm:mb-0
-						bg-green-500
+						bg-emerald-500
 						text-white
 						py-2
 						px-4

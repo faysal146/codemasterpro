@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-
 export default function ({ image, title, slug, createdAt, excerpt /* updatedAt, description */ }) {
     const thumbImage = getImage(image);
     return (
@@ -51,5 +50,5 @@ export default function ({ image, title, slug, createdAt, excerpt /* updatedAt, 
                 </Link>
             </div>
         </div>
-    )
+    );
 }

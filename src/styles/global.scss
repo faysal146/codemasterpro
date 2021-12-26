@@ -4,7 +4,7 @@
 
 body {
     @apply bg-gray-900 text-gray-200;
-    @apply scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-gray-900;
+    // @apply scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-gray-900;
     overflow-x: hidden;
 }
 
@@ -40,18 +40,12 @@ body {
 .react-share__ShareButton {
     @apply mr-2;
 }
-.ais-Hits-list {
-    @apply h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-gray-900;
-}
+// .ais-Hits-list {
+//     @apply h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-gray-900;
+// }
 .swiper-slide.codemaster-slider {
     @apply w-[300px] md:w-[320px] lg:w-[350px] #{!important};
 }
 .swiper-slide.relatedcourse-slider {
     @apply w-[270px] md:w-[300px] lg:w-[350px] #{!important};
 }
-
-// @media (min-width: 350px) {
-//     #nav-items {
-//         width: 45%;
-//     }
-// }

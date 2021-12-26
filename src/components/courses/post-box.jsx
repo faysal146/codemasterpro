@@ -30,9 +30,7 @@ export default function ({ image, title, excerpt, slug, createdAt /* updatedAt, 
                             {`${title.substr(0, 50)}...`}
                         </h2>
                     </Link>
-                    <p className="mb-4 text-gray-300 text-sm lg:text-base">
-                        {excerpt}
-                    </p>
+                    <p className="mb-4 text-gray-300 text-sm lg:text-base">{excerpt}</p>
                     <Link
                         to={`/${slug}`}
                         aria-label="Likes"

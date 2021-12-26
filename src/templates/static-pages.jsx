@@ -1,8 +1,12 @@
 import React from 'react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { graphql } from 'gatsby';
+
 import SEO from 'components/codemaster/seo';
+
 import Layout from 'layouts/layout';
+
+
 import 'styles/static-page.scss';
 
 const StaticPages = function ({ data }) {
@@ -37,5 +41,6 @@ export const query = graphql`
         }
     }
 `;
+
 
 export default StaticPages;

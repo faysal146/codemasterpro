@@ -1,16 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, connectSearchBox } from "react-instantsearch-dom"
-import SearchResult from "components/codemaster/search-result"
-
+import algoliasearch from 'algoliasearch/lite';
+import { InstantSearch, connectSearchBox } from 'react-instantsearch-dom';
+import SearchResult from 'components/codemaster/search-result';
 
 const SearchBox = connectSearchBox(
     ({ refine, /* currentRefinement,  */ query, handleChange, onSubmit }) => {
-        const handleSubmit = React.useCallback((e) => {
-            e.preventDefault()
-            refine(query)
-            onSubmit(true)
-        }, [query])
+        const handleSubmit = React.useCallback(
+            (e) => {
+                e.preventDefault();
+                refine(query);
+                onSubmit(true);
+            },
+            [query]
+        );
         return (
             <form className="aside-search flex" onSubmit={handleSubmit}>
                 <input
@@ -32,41 +34,35 @@ const SearchBox = connectSearchBox(
                     </svg>
                 </button>
             </form>
-        )
+        );
     }
-)
+);
 
 export default () => {
-    const [query, setQuery] = useState('')
-    const [showResult, setshowResult] = useState(false)
+    const [query, setQuery] = useState('');
+    const [showResult, setshowResult] = useState(false);
 
     const handleChange = React.useCallback((e) => {
-        setQuery(e.target.value)
-    }, [])
+        setQuery(e.target.value);
+    }, []);
     const onSubmit = React.useCallback((val) => {
-        setshowResult(val)
-    }, [])
+        setshowResult(val);
+    }, []);
     const handleClear = React.useCallback(() => {
-        setshowResult(false)
-        setQuery('')
-    }, [])
+        setshowResult(false);
+        setQuery('');
+    }, []);
     const searchClient = useMemo(
         () =>
             algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY),
         []
-    )
+    );
     return (
         <div>
-            <InstantSearch
-                searchClient={searchClient}
-                indexName="courses"
-            >
+            <InstantSearch searchClient={searchClient} indexName="courses">
                 <SearchBox query={query} handleChange={handleChange} onSubmit={onSubmit} />
-                {
-                    showResult && <SearchResult handleClear={handleClear} />
-                }
-
+                {showResult && <SearchResult handleClear={handleClear} />}
             </InstantSearch>
         </div>
-    )
-}
+    );
+};

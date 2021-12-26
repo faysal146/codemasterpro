@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import {
     FacebookShareButton,
@@ -10,12 +10,12 @@ import {
     RedditShareButton,
     RedditIcon,
     PinterestShareButton,
-    PinterestIcon,
-} from 'react-share'
+    PinterestIcon
+} from 'react-share';
 
 const ShareButtons = ({ title, url, twitterHandle, tags }) => (
     <div className="flex items-center">
-        <FacebookShareButton url={url} >
+        <FacebookShareButton url={url}>
             <FacebookIcon size={28} round />
         </FacebookShareButton>
 
@@ -23,11 +23,11 @@ const ShareButtons = ({ title, url, twitterHandle, tags }) => (
             <TwitterIcon size={28} round />
         </TwitterShareButton>
 
-        <PinterestShareButton url={url} >
+        <PinterestShareButton url={url}>
             <PinterestIcon size={28} round />
         </PinterestShareButton>
 
-        <RedditShareButton url={url} title={title} >
+        <RedditShareButton url={url} title={title}>
             <RedditIcon size={28} round />
         </RedditShareButton>
 
@@ -35,5 +35,5 @@ const ShareButtons = ({ title, url, twitterHandle, tags }) => (
             <WhatsappIcon size={28} round />
         </WhatsappShareButton>
     </div>
-)
-export default ShareButtons
+);
+export default ShareButtons;
