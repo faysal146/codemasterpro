@@ -6,7 +6,8 @@
             "layouts": ["./layouts"],
             "assets": ["/assets"],
             "styles": ["./styles"],
-            "context": ["./context"]
+            "context": ["./context"],
+            "graphql": ["./graphql"]
         }
     },
     "include": ["./src", "./assets", "./algolia-queries.js"]

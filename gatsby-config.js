@@ -107,7 +107,8 @@ module.exports = {
                 layouts: path.join(__dirname, './src/layouts'),
                 assets: path.join(__dirname, './assets'),
                 styles: path.join(__dirname, './src/styles'),
-                context: path.join(__dirname, './src/context')
+                context: path.join(__dirname, './src/context'),
+                graphql: path.join(__dirname, './src/graphql')
             }
         },
         {
@@ -132,6 +133,7 @@ module.exports = {
                 key: 'modal',
                 id: 'modal'
             }
-        }
+        },
+        'gatsby-plugin-webpack-bundle-analyser-v2'
     ]
 };

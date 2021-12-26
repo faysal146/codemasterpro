@@ -1,11 +1,16 @@
 const path = require('path');
 
+// how many post show in single page
+const postsPerPage = 10;
+
+// template for creating pages
 const staticPathTemplate = path.resolve('./src/templates/static-pages.jsx');
 const courseTemplate = path.resolve('./src/templates/courses.jsx');
 const coursesListTemplate = path.resolve('./src/templates/courses-list.jsx');
 const coursesByCategoryTemplate = path.resolve('./src/templates/categories.jsx');
 const coursesByTagTemplate = path.resolve('./src/templates/tags.jsx');
 
+// query for static page like aboutus, privacy-policy
 const staticPageGQL = `
     query StaticPageQuery {
         allFile(
@@ -16,11 +21,6 @@ const staticPageGQL = `
         ) {
             edges {
                 node {
-                    childMdx {
-                        frontmatter {
-                            slug
-                        }
-                    }
                     name
                 }
             }
@@ -98,12 +98,11 @@ const relatedPostQueryBuilder = `
     }
 `;
 
-const postsPerPage = 10;
-
 exports.createPages = async function ({ actions, graphql }) {
     // create static page like: aboutus, privacy-policy pages
     const staticPagesQuery = await graphql(staticPageGQL);
     const staticPages = staticPagesQuery.data.allFile.edges;
+    // creating pages
     staticPages.forEach(({ node: page }) => {
         const slug = page.name;
         actions.createPage({
@@ -113,10 +112,11 @@ exports.createPages = async function ({ actions, graphql }) {
         });
     });
 
-    const categories = []; // {name:"some value", routerPath:"path/to/category"}
+    // {name:"some value", routerPath:"path/to/category"}
+    const categories = [];
     let tags = [];
 
-    // create course page
+    // create course page from markdown
     const coursesQuery = await graphql(coursesQueryGQL);
     const coursesList = coursesQuery.data.allFile.edges;
     coursesList.forEach(({ node: course }) => {
@@ -125,6 +125,7 @@ exports.createPages = async function ({ actions, graphql }) {
             childMdx: { frontmatter }
         } = course;
         const coursesCategory = frontmatter.categories;
+        // store related posts from course
         const relatedPosts = {};
         if (coursesCategory && Array.isArray(coursesCategory)) {
             coursesCategory.forEach(async (cat) => {
@@ -152,12 +153,20 @@ exports.createPages = async function ({ actions, graphql }) {
         });
     });
 
-    // index page with courses content
-
+    /* 
+        => get how many page need to create => 10,11,12....
+    */
     const numPages = Math.ceil(coursesList.length / postsPerPage);
 
     Array.from({ length: numPages }).forEach((_, i) => {
         actions.createPage({
+            /*
+                => page number is 0 than create page as index page
+                => otherwise as /courses/{pagenumber}
+                    /courses/2
+                    /courses/3
+                    ..
+            */
             path: i === 0 ? `/` : `/courses/${i + 1}`,
             component: coursesListTemplate,
             context: {
@@ -169,7 +178,10 @@ exports.createPages = async function ({ actions, graphql }) {
         });
     });
 
-    // courses by category
+    /*
+        how many post belong per category
+        => {react: 3, vuejs: 2, ...}
+    */
     const countCategories = categories.reduce((prev, curr) => {
         prev[curr] = (prev[curr] || 0) + 1;
         return prev;
@@ -177,7 +189,8 @@ exports.createPages = async function ({ actions, graphql }) {
 
     const allCategories = Object.keys(countCategories);
 
-    allCategories.forEach((cat, i) => {
+    // creating page from category
+    allCategories.forEach((cat) => {
         const link = `/categories/${cat}`;
 
         Array.from({
@@ -199,7 +212,6 @@ exports.createPages = async function ({ actions, graphql }) {
     });
 
     // courses by tags
-
     const countTags = tags.reduce((prev, curr) => {
         prev[curr] = (prev[curr] || 0) + 1;
         return prev;

@@ -1,37 +1,34 @@
 [
     {
         "name": "ReactJS",
-        "routerPath": "react-js",
-        "position": 1
+        "routerPath": "react-js"
     },
     {
         "name": "VueJS",
-        "routerPath": "vue-js",
-        "position": 2
+        "routerPath": "vue-js"
     },
     {
         "name": "Angular",
-        "routerPath": "angular",
-        "position": 3
+        "routerPath": "angular"
     },
     {
         "name": "Savelt",
-        "routerPath": "savelt",
-        "position": 4
+        "routerPath": "savelt"
     },
     {
         "name": "Javascript",
-        "routerPath": "javascript",
-        "position": 5
+        "routerPath": "javascript"
     },
     {
         "name": "Typescript",
-        "routerPath": "typescript",
-        "position": 6
+        "routerPath": "typescript"
     },
     {
         "name": "NodeJS",
-        "routerPath": "node-js",
-        "position": 7
+        "routerPath": "node-js"
+    },
+    {
+        "name": "DateBase",
+        "routerPath": "database"
     }
 ]
